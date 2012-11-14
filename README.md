@@ -1,10 +1,6 @@
 # defor-entropy
 
-A Clojure library designed to ... well, that part is up to you.
-
-## Usage
-
-FIXME
+A project to analyze the dispersion of tropical deforestation over time.
 
 ## License
 
