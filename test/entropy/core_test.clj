@@ -28,7 +28,5 @@ characters."
 in the sample sources, forming a time series in long format, grouped
 by GADM ID."
   (long-tap 50 sample-prob-src sample-static-src)
-  => (produces [[23119 "2006-03-06" 60]
-                [23119 "2006-03-22" 140]
-                [99999 "2006-03-06" 120]
-                [99999 "2006-03-22" 140]]))
+  => (produces [["MYS" 23119 "2006-03-06" 60]
+                ["MYS" 23119 "2006-03-22" 140]]))

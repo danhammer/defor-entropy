@@ -29,15 +29,16 @@
     (for [[idx val] idx-series]
       [(period->datetime "16" (+ idx init-pd)) val])))
 
-(defn- long-tap
+(defn long-tap
   "Reshapes the probability series, aggregating the pixel
   probabilities if they exceed the threshold."
   [threshold prob-src static-src]
   (let [clean-src (clean-series prob-src static-src)]
-    (<- [?gadm ?date ?total-prob]
+    (<- [?iso ?gadm ?date ?total-prob]
         (clean-src ?mod-h ?mod-v ?sample ?line ?gadm ?clean-series)
         (explode-timeseries "2005-12-19" ?clean-series :> ?date ?val)
         (>= ?val threshold)
+        (gadm->iso ?gadm :> ?iso)
         (c/sum ?val :> ?total-prob))))
 
 (defn reshape-series
@@ -48,3 +49,5 @@
         prob-src   (hfs-seqfile (:prob-src path-map))]
     (?- (hfs-textline out-path)
         (long-tap threshold prob-src static-src))))
+
+
