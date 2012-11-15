@@ -28,7 +28,7 @@ lein do compile :all, install
 
 cd
 git clone git@github.com:danhammer/defor-entropy.git
-cd empirical-paper/
+cd defor-entropy/
 
 lein do compile :all, uberjar
 

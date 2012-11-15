@@ -47,7 +47,7 @@
   [threshold out-path]
   (let [static-src (hfs-seqfile (:static-src path-map))
         prob-src   (hfs-seqfile (:prob-src path-map))]
-    (?- (hfs-textline out-path)
+    (?- (hfs-textline out-path :sinkmode :replace)
         (long-tap threshold prob-src static-src))))
 
 
