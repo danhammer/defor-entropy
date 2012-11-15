@@ -1,3 +1,5 @@
+*pom.xml
+*target/*
 *data/staging/empirical-out/*
 *.pyg
 *credentials.json
