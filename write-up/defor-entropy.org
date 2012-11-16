@@ -1,0 +1,45 @@
+#+TITLE: Deforestation and the Central Tendency to Disperse
+#+AUTHOR: Dan Hammer, Robin Kraft, David Wheeler
+#+OPTIONS:     toc:nil num:nil 
+#+LATEX_HEADER: \usepackage{mathrsfs}
+#+LATEX_HEADER: \usepackage{graphicx}
+#+LATEX_HEADER: \usepackage{comment}
+#+LATEX_HEADER: \usepackage{color}
+#+LATEX_HEADER: \usepackage{amstex}
+#+LATEX_HEADER: \usepackage{booktabs}
+#+LATEX_HEADER: \usepackage{dcolumn}
+#+LATEX_HEADER: \usepackage{subfigure}
+#+LATEX_HEADER: \usepackage[margin=1in]{geometry}
+#+LATEX_HEADER: \RequirePackage{fancyvrb}
+#+LATEX_HEADER: \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\small,formatcom = {\color[rgb]{0.1,0.2,0.9}}}
+#+LATEX: \setlength{\parindent}{0in}
+#+LATEX: \renewcommand{\X}{{\bf X}}
+#+LATEX: \renewcommand{\st}{\hspace{8pt} \mbox{s.t.} \hspace{6pt}}
+#+LATEX: \renewcommand{\y}{{\bf y}}
+#+STARTUP: fninline
+
+Deforestation and forest degradation may account for as much as 15% of
+annual carbon emissions, as much as the global transporation sector.
+An emissions source of this magnitude must be addressed to avert
+severe climate change.  International efforts to curb the rate of
+deforestation have thus far been piecemeal and bilateral agreements,
+with primary focus on Brazil and Indonesia, the two largest
+contributors to global deforestation.  In 2007, the two countries
+accounted for approximately X% of deforestation, worldwide. However,
+as international attention continues to focus on Brazil and Indonesia,
+deforestation has become more spread out, especially around the
+periphery of these regional hotspots.  In this note, we describe the
+broad geographic trends in deforestation, illustrating the increased
+dispersion with many more countries becoming more significant
+contributors to the excessively high rates of clearing.\\
+
+We utilize the FORMA data set to track deforestation in the tropics
+for each 500-meter pixel and each 16-day interval between December 31,
+2005 and September 18, 2012.  To measure entropy, we \\
+
+\begin{figure}
+\centering
+\label{fig:iso-entropy}
+\includegraphics[scale=0.65]{images/iso-entropy.png}
+\caption{Normalized entropy at the country level between Dec 2005 and Sept 2012.}
+\end{figure}
