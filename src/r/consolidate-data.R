@@ -1,5 +1,6 @@
 library(ggplot2)
 library(plm)
+library(TTR)
 
 prep.data <- function(out.name, force = FALSE) {
   ## Retrieve data from S3 and concatenate the results into a single
@@ -41,6 +42,7 @@ shannon.entropy <- function(coll, probs = FALSE, normalize = TRUE) {
     return(H)
   }
 }
+
 
 graph.entropy <- function(df, graph.name) {
   ## Create a data frame to graph
@@ -84,3 +86,13 @@ graph.entropy(gadm.data, "gadm-entropy.png")
 
 ## Graph the entropy at the ISO, country level
 graph.entropy(iso.data, "iso-entropy.png")
+
+## Graph the total, global rate of clearing activity
+global.data <- aggregate(iso.data$rate, by=list(iso.data$date), FUN=sum)
+g.data <- data.frame(date = as.Date(global.data$Group.1), rate = global.data$x)
+
+(g <- ggplot(g.data, aes(x = date, y = rate)) + geom_line())
+gsave(filename = "../../write-up/images/total-rate.png", plot = g)
+
+(g <- ggplot(g.data, aes(x = date, y = SMA(rate))) + geom_line())
+ggsave(filename = fname <- "../../write-up/images/smoothed-rate.png", plot = g)
