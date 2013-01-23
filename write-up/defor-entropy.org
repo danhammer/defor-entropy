@@ -1,4 +1,4 @@
-#+TITLE: Deforestation and the Central Tendency to Disperse
+#+TITLE: Coasian Motion: Deforestation and the Central Tendency to Disperse
 #+AUTHOR: Dan Hammer, Robin Kraft, David Wheeler
 #+OPTIONS:     toc:nil num:nil 
 #+LATEX_HEADER: \usepackage{mathrsfs}
@@ -14,28 +14,74 @@
 #+LATEX_HEADER: \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\small,formatcom = {\color[rgb]{0.1,0.2,0.9}}}
 #+LATEX: \setlength{\parindent}{0in}
 #+LATEX: \renewcommand{\X}{{\bf X}}
+#+LATEX: \renewcommand{\I}{\mathbb{I}}
 #+LATEX: \renewcommand{\st}{\hspace{8pt} \mbox{s.t.} \hspace{6pt}}
 #+LATEX: \renewcommand{\y}{{\bf y}}
 #+STARTUP: fninline
 
-Deforestation and forest degradation may account for as much as 15% of
-annual carbon emissions, as much as the global transporation sector.
-An emissions source of this magnitude must be addressed to avert
-severe climate change.  International efforts to curb the rate of
-deforestation have thus far been piecemeal and bilateral agreements,
-with primary focus on Brazil and Indonesia, the two largest
-contributors to global deforestation.  In 2007, the two countries
-accounted for approximately X% of deforestation, worldwide. However,
-as international attention continues to focus on Brazil and Indonesia,
-deforestation has become more spread out, especially around the
-periphery of these regional hotspots.  In this note, we describe the
-broad geographic trends in deforestation, illustrating the increased
-dispersion with many more countries becoming more significant
-contributors to the excessively high rates of clearing.\\
+* Introduction
 
-We utilize the FORMA data set to track deforestation in the tropics
-for each 500-meter pixel and each 16-day interval between December 31,
-2005 and September 18, 2012.  To measure entropy, we \\
+Deforestation and forest degradation account for 12% of annual carbon
+emissions, as much as the global transporation sector.  An emissions
+source of this magnitude must be addressed in order to avert severe
+climate change.  International efforts to curb the rate of
+deforestation have thus far been a series of bilateral agreements,
+mostly centered around Brazil and Indonesia, the two largest
+contributors to global deforestation.  In 2007, the two countries
+accounted for approximately 40% of global deforestation. However, as
+international attention continues to focus on Brazil and Indonesia,
+forest clearing activity has become more disperesed, especially around
+the periphery of these regional hotspots.  In this paper, we report
+the broad geographic trends in deforestation, using an original data
+set on forest clearing activity from satellite imagery.  We highlight
+the increased dispersion of clearing activity and discuss the likely
+implications for global conservation efforts.
+
+* Data
+
+We rely on bimonthly data from the Forest Monitoring for Action
+(FORMA) system, which is the basis for the Global Forest Watch
+initiative through the World Resources Institute.  The FORMA system
+reports the likelihood of forest clearing activity at 16-day intervals
+for each 500-meter, forested pixel in the humid tropics.  The output
+data set is derived from the time series analysis of remotely sensed
+data, primarily from the Moderate Resolution Image Spectroradiometer
+(MODIS) sensor aboard NASA's Terra satellite.  We collect attributes
+from the time series on a number of spectral data, including the
+derived Normalized Difference Vegetation Index (NDVI) that reports
+reflected green and infrared 
+
+* Definition of dispersion
+
+The pixel-level alerts are primed for aggregation into political
+units.  The uncertainty in the clearing alerts is, in fact, mitigated
+by aggregation if we assume that measurement error is independent and
+identically distributed, which is not beyond the realm of possibility.
+Let $p_{it}$ indicate the probability of forest clearing activity
+between February 2000 through the interval indexed by $t$. Let $C_j$
+be a collection of pixel indices within the administrative unit
+$j$. Let $D_{jt}$ be the aggregated and scaled probabilities of
+clearing for administrative unit $C_j$, such that
+\begin{equation}
+\label{eq:aggregation}
+D_{jt} = \sum_{i \in C_j} \I (p_{it} \geq 0.5) \cdot p_{it}
+\end{equation}
+
+We use the Shannon Entropy measure to report the level of dispersion
+across the $n$ administrative units.  For each $t$, we calculate the
+entropy:
+\begin{equation}
+\label{eq:entropy}
+E_{t} = -\sum_{j = 1}^{n} \tilde{D}_{jt} \log_{2} \tilde{D}_{jt},
+\end{equation} where $\tilde{D}_{jt}$ is the proportion of clearing
+signal in administrative unit $j \in 1, 2, \ldots, n$ through period
+$t$.
+
+* Geographic dispersion
+
+** Country 
+
+TODO: why seasonal?
 
 \begin{figure}
 \centering
@@ -43,3 +89,29 @@ for each 500-meter pixel and each 16-day interval between December 31,
 \includegraphics[scale=0.65]{images/iso-entropy.png}
 \caption{Normalized entropy at the country level between Dec 2005 and Sept 2012.}
 \end{figure}
+
+** Province level
+
+\begin{figure}
+\centering
+\label{fig:iso-entropy}
+\includegraphics[scale=0.65]{images/gadm-entropy.png}
+\caption{Normalized entropy at the country level between Dec 2005 and Sept 2012.}
+\end{figure}
+
+* Regional highlights
+
+
+
+* Implications for conservation
+
+Conservation negotiations rely on a series of joint arrangements.
+Each arrangement takes a significant amount of time to specify.  Even
+if the number of relevant players in the negotiation rises linearly,
+the number of joint arrangements will rise exponentially.  The
+complexity and barriers to a common conservation agreement increase
+exponentially as tropical deforestation becomes more dispersed.  The
+basis for this observation is founded in both operations research and
+contract theory [find citations].
+
+* Conclusion

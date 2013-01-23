@@ -43,13 +43,13 @@ shannon.entropy <- function(coll, probs = FALSE, normalize = TRUE) {
   }
 }
 
-
-graph.entropy <- function(df, graph.name) {
+graph.entropy <- function(df, graph.name, first.pd) {
   ## Create a data frame to graph
   ets <- aggregate(df$rate, by=list(df$date), FUN=shannon.entropy)
   names(ets) <- c("date", "entropy")
   g.data <- data.frame(date = as.Date(ets$date), entropy = ets$entropy)
-
+  g.data <- g.data[g.data$date > as.Date(first.pd), ]
+  
   ## Generate and save graph to images directory
   fname <- paste("../../write-up/images/", graph.name, sep="")
   g <- ggplot(g.data, aes(x = date, y = entropy)) + geom_line()
@@ -82,17 +82,19 @@ iso.data <- aggregate(data$rate, by=list(data$iso, data$date), FUN=sum)
 names(iso.data) <- c("iso", "date", "rate")
 
 ## Graph the entropy at the GADM, sub-province level
-graph.entropy(gadm.data, "gadm-entropy.png")
+graph.entropy(gadm.data, "gadm-entropy.png", first.pd = "2008-01-01")
 
 ## Graph the entropy at the ISO, country level
-graph.entropy(iso.data, "iso-entropy.png")
+graph.entropy(iso.data, "iso-entropy.png", first.pd = "2008-01-01")
 
 ## Graph the total, global rate of clearing activity
 global.data <- aggregate(iso.data$rate, by=list(iso.data$date), FUN=sum)
 g.data <- data.frame(date = as.Date(global.data$Group.1), rate = global.data$x)
+g.data <- g.data[g.data$date > as.Date("2008-01-01"), ]
+g.data$hp <- hpfilter(g.data$rate, freq = 100)$trend
 
 (g <- ggplot(g.data, aes(x = date, y = rate)) + geom_line())
-gsave(filename = "../../write-up/images/total-rate.png", plot = g)
+ggsave(filename = "../../write-up/images/total-rate.png", plot = g)
 
-(g <- ggplot(g.data, aes(x = date, y = SMA(rate))) + geom_line())
+(g <- ggplot(g.data, aes(x = date, y = hp)) + geom_line())
 ggsave(filename = fname <- "../../write-up/images/smoothed-rate.png", plot = g)
