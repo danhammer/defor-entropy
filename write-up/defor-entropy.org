@@ -90,7 +90,7 @@ TODO: why seasonal?
 \caption{Normalized entropy at the country level between Dec 2005 and Sept 2012.}
 \end{figure}
 
-** Province level
+** Province and sub-province level
 
 \begin{figure}
 \centering
@@ -99,9 +99,12 @@ TODO: why seasonal?
 \caption{Normalized entropy at the country level between Dec 2005 and Sept 2012.}
 \end{figure}
 
-* Regional highlights
+** Tree entropy
 
-
+Look at the dispersion trends /within a country/.  This corresponds
+with the scenario of countries being at international negotiations,
+who in turn deal with local provinces for actual conservation.  How
+tenable are the promises made at the international negotiating table?
 
 * Implications for conservation
 
@@ -112,6 +115,14 @@ the number of joint arrangements will rise exponentially.  The
 complexity and barriers to a common conservation agreement increase
 exponentially as tropical deforestation becomes more dispersed.  The
 basis for this observation is founded in both operations research and
-contract theory [find citations].
+contract theory [find citations].\\
+
+The increased dispersion also suggest the possibility of geographic
+leakage, given that deforestation has already begun to spread.  Static
+coefficient of friction is much greater than the dyanmic coefficient
+of friction; and this analogy applies to economic processes with
+increasing returns to scale.
 
 * Conclusion
+
+
