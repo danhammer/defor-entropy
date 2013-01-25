@@ -53,6 +53,9 @@ graph.entropy <- function(df, graph.name, first.pd) {
   ## Generate and save graph to images directory
   fname <- paste("../../write-up/images/", graph.name, sep="")
   g <- ggplot(g.data, aes(x = date, y = entropy)) + geom_line()
+
+  g <- g + opts(axis.title.x=theme_text(angle=90, hjust=1))
+  
   ggsave(filename = fname, plot = g)
 }
 
@@ -76,6 +79,15 @@ data$lag.total <- lag(data$forma.idx)
 data$rate <- data$forma.idx - data$lag.total
 gadm.data <- data <- data[!is.na(data$rate),]
 
+## Aggregate the rate data by province level and data, sum over all
+## GADM IDs within a given province
+load("../../data/raw/gadm-map.Rdata")
+merge.map <- gadm.map[ , c("prov", "gadm")]
+data <- merge(merge.map, data, by=c("gadm"))
+
+prov.data <- aggregate(data$rate, by=list(data$prov, data$date), FUN=sum)
+names(prov.data) <- c("prov", "date", "rate")
+
 ## Aggregate the rate data by ISO3 code and date, effectively sum over
 ## all GADM IDs within an ISO code for each period
 iso.data <- aggregate(data$rate, by=list(data$iso, data$date), FUN=sum)
@@ -83,6 +95,9 @@ names(iso.data) <- c("iso", "date", "rate")
 
 ## Graph the entropy at the GADM, sub-province level
 graph.entropy(gadm.data, "gadm-entropy.png", first.pd = "2008-01-01")
+
+## Graph the entropy at the Province level
+graph.entropy(prov.data, "prov-entropy.png", first.pd = "2008-01-01")
 
 ## Graph the entropy at the ISO, country level
 graph.entropy(iso.data, "iso-entropy.png", first.pd = "2008-01-01")
