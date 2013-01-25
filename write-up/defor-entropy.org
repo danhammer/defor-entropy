@@ -14,8 +14,10 @@
 #+LATEX_HEADER: \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\small,formatcom = {\color[rgb]{0.1,0.2,0.9}}}
 #+LATEX: \setlength{\parindent}{0in}
 #+LATEX: \renewcommand{\X}{{\bf X}}
+#+LATEX: \renewcommand{\D}{{\bf D}}
 #+LATEX: \renewcommand{\I}{\mathbb{I}}
 #+LATEX: \renewcommand{\st}{\hspace{8pt} \mbox{s.t.} \hspace{6pt}}
+#+LATEX: \renewcommand{\with}{\hspace{8pt} \mbox{with} \hspace{6pt}}
 #+LATEX: \renewcommand{\y}{{\bf y}}
 #+STARTUP: fninline
 
@@ -37,51 +39,97 @@ set on forest clearing activity from satellite imagery.  We highlight
 the increased dispersion of clearing activity and discuss the likely
 implications for global conservation efforts.
 
+- we care about admin units bc that's where negotiations and policies are crafted and enforced
+- defor is clustered
+
 * Data
 
-We rely on bimonthly data from the Forest Monitoring for Action
-(FORMA) system, which is the basis for the Global Forest Watch
-initiative through the World Resources Institute.  The FORMA system
-reports the likelihood of forest clearing activity at 16-day intervals
-for each 500-meter, forested pixel in the humid tropics.  The output
-data set is derived from the time series analysis of remotely sensed
-data, primarily from the Moderate Resolution Image Spectroradiometer
-(MODIS) sensor aboard NASA's Terra satellite.  We collect attributes
-from the time series on a number of spectral data, including the
-derived Normalized Difference Vegetation Index (NDVI) that reports
-reflected green and infrared 
+The data used for this paper are the forest clearing alerts from
+Forest Monitoring for Action (FORMA), a pan-tropical forest monitoring
+system developed by Hammer et al. (2013).  The data are derived from
+remotely sensed data, primarily from the MODIS sensor.  FORMA reports
+the probability of forest clearing activity at 16-day intervals for
+each 500-meter, forest pixel in the humid tropics.  Pixel time series
+are created by stacking satellite imagery, merging the spectral
+histories with ancilliary data, including rainfall.  Non-forest pixels
+are removed from analysis by screening out pixels with VCF < 25 as
+done in Hansen (2008).  The algorithm extracts characteristics from
+the pixel time series that correspond to unnatural patterns in data.
+The characteristics are, in turn, matched against the forest cover
+loss hotspots data set.  The result is a continually updated
+characterization of clearing activity for each period, or a
+probability of forest clearing activity by the specified time
+interval.\\
+
+The accuracy assessment in Hammer et al (2013) indicates that a
+confidence threshold of 0.5 produces a robust alerting system that
+minimizes false positives and successfully identifies the
+industrial-scale clearing activity that is the focus of this paper.
+The continuous probability range is valuable because it provides
+information on the relative intensity of clearing across pixels as
+opposed to a binary indicator.  The aggregate measure of clearing
+activity in an administrative unit in this paper is calculated for
+each interval as the summed probabilities, conditional on the
+probabilities exceeding a confidence threshold of 0.5.  Analysis of
+the dynamics of forest clearing acitivity are made possible by the
+high frequency of the updates.  Higher resolultion systems are
+suitable to focused areal assessments, but cannot adequately
+characterize the sub-annual dynamics at a time-scale commensurate with
+economic drivers of deforestation.  The dynamics and geographic scope
+of FORMA data make this paper possible.
 
 * Definition of dispersion
 
-The pixel-level alerts are primed for aggregation into political
-units.  The uncertainty in the clearing alerts is, in fact, mitigated
-by aggregation if we assume that measurement error is independent and
-identically distributed, which is not beyond the realm of possibility.
-Let $p_{it}$ indicate the probability of forest clearing activity
-between February 2000 through the interval indexed by $t$. Let $C_j$
-be a collection of pixel indices within the administrative unit
-$j$. Let $D_{jt}$ be the aggregated and scaled probabilities of
-clearing for administrative unit $C_j$, such that
+Dispersion is the degree of spread of a phenomenon over space and/or
+time. In this paper, we consider dispersion of deforestation as
+characterizing the degree of concentration of clearing activity in a
+geographic area. The measure of dispersion of clearing activity at any
+particular time is based on an aggregated measure of clearing, given
+by FORMA. The geographic aggregations of interest in this paper -
+countries, provinces and sub-provinces - are arbitrary, but important
+given that these units define the various levels of decision making
+that affect deforestation.
+
+Let i be the pixel index, and cj be the set of pixel indices in
+administrative unit j. The aggregate level of clearing activity in
+administrative unit j and time period t is given by equation X.
+
 \begin{equation}
 \label{eq:aggregation}
 D_{jt} = \sum_{i \in C_j} \I (p_{it} \geq 0.5) \cdot p_{it}
 \end{equation}
 
-We use the Shannon Entropy measure to report the level of dispersion
-across the $n$ administrative units.  For each $t$, we calculate the
-entropy:
+We characterize the spread of clearing activity across all
+administrative units in the sample by using Shannon's entropy
+criterion, defined in equation Y.
+
 \begin{equation}
 \label{eq:entropy}
-E_{t} = -\sum_{j = 1}^{n} \tilde{D}_{jt} \log_{2} \tilde{D}_{jt},
-\end{equation} where $\tilde{D}_{jt}$ is the proportion of clearing
-signal in administrative unit $j \in 1, 2, \ldots, n$ through period
-$t$.
+E_{t} = -\sum_{j = 1}^{n} \frac{D_{jt}}{D_t} \log_{2} \frac{D_{jt}}{D_t} \with D_{t} = \sum_j D_{jt}
+\end{equation}
+
+E ranges from 0 to 1, and larger values of E indicate higher
+dispersion across units.  A value of 1 is a uniform distribution, with
+equal values for all units. A higher value of E across countries, for
+example, would indicate that clearing is less clustered at the the
+country level. More concretely, this would indicate that clearing is
+spreading beyond Brazil and Indonesia.
 
 * Geographic dispersion
 
+At various levels of disaggregation, the patterns of forest clearing
+dispersion remain similar.  We consider the country, provincial, and
+sub-province administrative units because that's where forest
+management policy is created or implemented.  
+
 ** Country 
 
-TODO: why seasonal?
+Upward trend.  And seasonal.  Is entropy low when deforestation rates
+are high, or vice versa?  Plot the sd of clearing activity over the
+mean of clearing activity :: coefficient of variation.  Find out
+whether CV trend is going up or down.
+
+TODO: why seasonal? individual country's seasonality?  
 
 \begin{figure}
 \centering
@@ -91,6 +139,8 @@ TODO: why seasonal?
 \end{figure}
 
 ** Province and sub-province level
+
+TODO: do the same for prince and sub-province level.
 
 \begin{figure}
 \centering
@@ -105,6 +155,11 @@ Look at the dispersion trends /within a country/.  This corresponds
 with the scenario of countries being at international negotiations,
 who in turn deal with local provinces for actual conservation.  How
 tenable are the promises made at the international negotiating table?
+
+Consider Indonesia the world and look at the dispersion across
+sub-provinces.  The question is whether the promises made by the big
+players are credible.  Indonesia's position becomes more difficult,
+since they have to interact with more local leaders.
 
 * Implications for conservation
 
