@@ -53,10 +53,9 @@ graph.entropy <- function(df, graph.name, first.pd) {
   ## Generate and save graph to images directory
   fname <- paste("../../write-up/images/", graph.name, sep="")
   g <- ggplot(g.data, aes(x = date, y = entropy)) + geom_line()
+  g <- g + ylab("") + xlab("") 
 
-  g <- g + opts(axis.title.x=theme_text(angle=90, hjust=1))
-  
-  ggsave(filename = fname, plot = g)
+  ggsave(filename = fname, plot = g, width=8, height=3, dpi=200)
 }
 
 ## Grab data from S3 if not already downloaded

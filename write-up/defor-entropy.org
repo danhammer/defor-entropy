@@ -6,12 +6,14 @@
 #+LATEX_HEADER: \usepackage{comment}
 #+LATEX_HEADER: \usepackage{color}
 #+LATEX_HEADER: \usepackage{amstex}
+#+LATEX_HEADER: \usepackage{graphicx}
 #+LATEX_HEADER: \usepackage{booktabs}
 #+LATEX_HEADER: \usepackage{dcolumn}
 #+LATEX_HEADER: \usepackage{subfigure}
+#+LATEX_HEADER: \usepackage{caption} 
+#+LATEX_HEADER: \usepackage{subcaption}
+#+LATEX_HEADER: \usepackage{comment} 
 #+LATEX_HEADER: \usepackage[margin=1in]{geometry}
-#+LATEX_HEADER: \RequirePackage{fancyvrb}
-#+LATEX_HEADER: \DefineVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\small,formatcom = {\color[rgb]{0.1,0.2,0.9}}}
 #+LATEX: \setlength{\parindent}{0in}
 #+LATEX: \renewcommand{\X}{{\bf X}}
 #+LATEX: \renewcommand{\D}{{\bf D}}
@@ -131,23 +133,10 @@ whether CV trend is going up or down.
 
 TODO: why seasonal? individual country's seasonality?  
 
-\begin{figure}
-\centering
-\label{fig:iso-entropy}
-\includegraphics[scale=0.65]{images/iso-entropy.png}
-\caption{Normalized entropy at the country level between Dec 2005 and Sept 2012.}
-\end{figure}
 
 ** Province and sub-province level
 
 TODO: do the same for prince and sub-province level.
-
-\begin{figure}
-\centering
-\label{fig:iso-entropy}
-\includegraphics[scale=0.65]{images/gadm-entropy.png}
-\caption{Normalized entropy at the country level between Dec 2005 and Sept 2012.}
-\end{figure}
 
 ** Tree entropy
 
@@ -160,6 +149,30 @@ Consider Indonesia the world and look at the dispersion across
 sub-provinces.  The question is whether the promises made by the big
 players are credible.  Indonesia's position becomes more difficult,
 since they have to interact with more local leaders.
+
+\begin{figure}[h]
+        \centering
+        \begin{subfigure}[b]{0.3\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{images/iso-entropy.png}
+                \caption{{\bf Country}}
+                \label{fig:para}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.3\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{images/prov-entropy.png}
+                \caption{{\bf Province}}
+                \label{fig:borneo}
+        \end{subfigure}
+        \begin{subfigure}[b]{0.3\textwidth}
+                \centering
+                \includegraphics[width=\textwidth]{images/gadm-entropy.png}
+                \caption{{\bf Subprovince}}
+                \label{fig:borneo}
+        \end{subfigure} 
+        \caption{Entropy over time for three levels of administrative units}
+\label{fig:rates}
+\end{figure}
 
 * Implications for conservation
 
