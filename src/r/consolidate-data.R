@@ -78,6 +78,7 @@ data$lag.total <- lag(data$forma.idx)
 data$rate <- data$forma.idx - data$lag.total
 gadm.data <- data <- data[!is.na(data$rate),]
 
+
 ## Aggregate the rate data by province level and data, sum over all
 ## GADM IDs within a given province
 load("../../data/raw/gadm-map.Rdata")
@@ -112,3 +113,5 @@ ggsave(filename = "../../write-up/images/total-rate.png", plot = g)
 
 (g <- ggplot(g.data, aes(x = date, y = hp)) + geom_line())
 ggsave(filename = fname <- "../../write-up/images/smoothed-rate.png", plot = g)
+
+save(iso.data, file="../../data/processed/iso-data.Rdata")
