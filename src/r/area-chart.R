@@ -7,12 +7,17 @@ data <- ddply(iso.data, c("date"), transform, sum=sum(rate))
 data["prop"] <- data$rate/data$sum
 
 sub.data <- data[data$iso %in% c("IDN", "BRA", "MYS"), ]
-sub.data <- sub.data[as.Date(sub.data$date) >= as.Date("2008-01-01"), ]
+sub.data$date <- as.Date(sub.data$date)
+sub.data <- sub.data[sub.data$date >= as.Date("2008-01-01"), ]
 
 
 p <- ggplot(sub.data, aes(date, prop))
-p + geom_area(aes(colour = iso, fill= iso), position = 'stack')  
+p + geom_bar(aes(colour = iso, fill= iso), stat="identity")
 
+# better colors!
+p + scale_fill_hue(l=40) + scale_colour_hue(l=40)
+
+ggsave("../../write-up/images/stacked-shares-BRA-IDN-MYS.png")
 
 # graph # of countries accounting for >= 1% of alerts, by period
 
