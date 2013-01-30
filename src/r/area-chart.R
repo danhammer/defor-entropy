@@ -21,9 +21,23 @@ ggsave("../../write-up/images/stacked-shares-BRA-IDN-MYS.png")
 
 # graph # of countries accounting for >= 1% of alerts, by period
 
-data.1 <- data[data$prop >= .01, ]
-agg.1 <- aggregate(data.1, by=list(onepercent$date), FUN=length)
-agg.1$date <- as.Date(agg.1$Group.1)
+percent <- function(df, minprob=0.01) {
+  # e.g. percent(data, .01)
+  data <- data[data$prop >= minprob, ]
+  agg.data <- aggregate(data, by=list(data$date), FUN=length)
+  agg.data$date <- as.Date(agg.data$Group.1)
+  print(tail(agg.data))
 
-ggplot(agg.1, aes(x=a$date, y=a$rate)) + geom_line() + ylab("countries with 1% of total") + xlab("")
-ggsave("../../write-up/images/1percent.png")
+  minprob.name <- round(minprob * 100)
+  ylabel <- sprintf("Number of countries with %d percent of defor", minprob.name)
+
+  ggplot(agg.data, aes(x=date, y=rate)) + geom_line() + ylab(ylabel) + xlab("")
+
+  ggsave(sprintf("../../write-up/images/%dpercent.png", minprob.name))
+}
+
+
+
+
+
+
