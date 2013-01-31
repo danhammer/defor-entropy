@@ -58,7 +58,34 @@ graph.entropy <- function(df, graph.name, first.pd) {
   ggsave(filename = fname, plot = g, width=8, height=3, dpi=200)
 }
 
-## Grab data from S3 if not already downloaded
+graph.linegraph <- function(df, first.pd, yname, iso, labx="", laby="", fullpath="../../write-up/images/%s-%s.png") {
+
+  fname <- sprintf(fullpath, yname, iso)
+
+  # filter by iso code
+  d <- df[df$iso == iso, ]
+
+  # make dataframe for graphing
+  g.data <- data.frame(as.Date(d$date), d[, c(yname)])
+
+  # give fields names
+  names(g.data) <- c("date", yname)
+
+  # screen out early dates
+  g.data <- g.data[g.data$date > as.Date(first.pd), ]
+
+  # create plot
+  g <- ggplot(g.data, aes(x = date, y = rate)) + geom_line() + xlab(labx) + ylab(laby)
+
+  # save plot
+  ggsave(filename=fname, plot=g, width=8, height=3, dpi=200)
+
+}
+                            
+
+main <- function() {
+
+  ## Grab data from S3 if not already downloaded
 out.code <- prep.data("gadm-ts.txt")
 
 ## Read in data, normalize total pixel hits
@@ -85,8 +112,8 @@ load("../../data/raw/gadm-map.Rdata")
 merge.map <- gadm.map[ , c("prov", "gadm")]
 data <- merge(merge.map, data, by=c("gadm"))
 
-prov.data <- aggregate(data$rate, by=list(data$prov, data$date), FUN=sum)
-names(prov.data) <- c("prov", "date", "rate")
+prov.data <- aggregate(data$rate, by=list(data$iso, data$prov, data$date), FUN=sum)
+names(prov.data) <- c("iso", "prov", "date", "rate")
 
 ## Aggregate the rate data by ISO3 code and date, effectively sum over
 ## all GADM IDs within an ISO code for each period
@@ -115,3 +142,5 @@ ggsave(filename = "../../write-up/images/total-rate.png", plot = g)
 ggsave(filename = fname <- "../../write-up/images/smoothed-rate.png", plot = g)
 
 save(iso.data, file="../../data/processed/iso-data.Rdata")
+  
+}
