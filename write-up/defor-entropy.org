@@ -176,6 +176,132 @@ since they have to interact with more local leaders.
 
 * Implications for conservation
 
+Our results indicate that tropical forest clearing is dispersing
+rapidly across countries, particularly in the regions near Brazil and
+Indonesia. This development may have significant implications for
+conservation strategy through its impact on the economics of
+negotiating, monitoring and enforcing international agreements. Since
+we focus on forest clearing as a carbon pollution problem, we provide
+a Coasian interpretation of the issue (Coase, 1960).[fn::We recognize
+that tropical forest clearing also entails grave risks for many
+endangered species, as well as large potential costs from the loss of
+local ecosystem services. Resolution of these problems may well
+require additional measures that are not discussed in this paper.] In
+the Coasian view, parties damaged by polluting emissions have three
+basic options for redress: (1) receiving compensation for damage
+and/or reducing pollution through legal action against polluters; (2)
+reducing pollution via government regulation of polluters; (3) paying
+polluters to reduce their emissions.\\
+
+As Coase and many others have noted, the appropriate choice depends on
+the relative benefits and costs of each option in a particular
+context, as well as the status of relevant legal and governmental
+institutions. In the case of forest policy, international donors have
+focused on Coasian option (3) --- payment for pollution reduction ---
+because global legal and regulatory constraints make options (1) and
+(2) infeasible. The traditional payment system has focused on direct
+support for protected areas in tropical forests. However, clearing has
+continued in many protected areas, and donors have responded by
+initiating programs that compensate countries for successful
+protection. These programs, coordinated by the United Nations, are
+collectively known as REDD+: Reducing Emissions from Deforestation and
+Forest Degradation in Developing Countries.\\
+
+Unfortunately, our evidence suggests that the Coasian bargains
+envisioned by REDD+ are becoming less attractive as forest clearing
+disperses more widely. The essential problem resides in transactions
+costs. If pollution is concentrated in a few countries, compensation
+negotiations are not excessively costly because few parties are
+involved. As pollution disperses across countries, however,
+negotiation costs escalate even if total pollution remains
+constant. This is particularly true if weak governance in new entrants
+raises the cost of monitoring and enforcing compensation agreements.\\
+
+From a traditional Coasian perspective, then, we are forced to
+conclude that the rapid dispersal of forest clearing has significantly
+raised the cost of tropical forest conservation. Fortunately, we
+believe that the Coasian prospectus can be expanded to a fourth option
+(“Coase+”) that may provide an attractive alternative to REDD+ in some
+cases.\\
+
+Coase+ shifts the locus of the pollution problem from production to
+consumption. It reflects the fact that pollution is a byproduct of
+commodity production for final delivery to consumers.  In cases where
+products can be linked explicitly to polluting producers, the Coasian
+option set expands because damaged parties can seek redress through
+legal or governmental actions directed at polluters’ products, or
+through selective promotion of products from “clean” producers. Coase+
+measures can be enacted locally, because they do not depend on the
+assent of other countries. Such measures may be preferable to REDD+
+programs in cases where consumption is highly concentrated (making
+single-country measures effective) and polluting production is widely
+dispersed (making compensation negotiations costly).\\
+
+Is Coase+ an attractive alternative in the real world? The answer
+depends on assessment of at least five factors. The first is the
+concentration of consumption relative to polluting production in the
+tropical forest sector. Our evidence for rapid dispersion of forest
+clearing is striking, but consumption has also been de-concentrating
+internationally, as the global consumption share of low- and
+middle-income countries has increased. However, this process has been
+much slower than the accelerated dispersion of forest clearing during
+the past few years. On balance, the change in relative concentration
+has shifted the balance toward Coase+ measures.\\
+
+The second factor is information. Can products be reliably linked to
+their polluting sources?  "Pollution accounting" is feasible for bulk
+commodities whose value chains are relatively short, because product
+attribution is clear, only shipment in bulk lots is cost-effective,
+and transshipment in bulk through third countries to avoid detection
+is both expensive and futile.  Many commodities produced on
+previously-forested tropical land fall into this category (e.g., palm
+oil, beef, soybeans).\\
+
+The third factor relates to domestic politics in high-income areas
+where consumption is concentrated (e.g., North America, Western
+Europe). On balance, the political case for Coase+ measures seems
+favorable. For taxpayers, there is no immediately-clear distinction
+between Coase+ and REDD+ measures based on compensation or promotion
+of “clean” products, because both options involve public
+expenditure. Ceteris paribus, taxpayers should prefer the more
+cost-effective approach. Where product taxation is employed as a
+Coase+ measure, offsetting reductions in other taxes can be
+implemented. For products such as beef, soybeans and vegetable oil,
+where domestic (non-tropical-forest) producers compete with tropical
+forest producers, the domestic producers should support Coase+
+taxation because it will improve their competitive status.\\
+
+The fourth factor relates to international trade relations. Existing
+WTO rules can accommodate tariffs or regulatory controls for imported
+products that have negative production or consumption externalities,
+as long as these measures are not directed at specific countries. 2 In
+principle, this includes regulation or taxation of imported
+commodities produced in cleared tropical forest areas or,
+equivalently, subsidies for products that are not produced in those
+areas.\\
+
+The fifth factor is the disposition of revenues from Coase+ taxation
+of imported products. In principle, the taxing country could rebate
+all revenues to the country whose products are taxed.  This would
+preserve the basic rationale for Coase+ product taxation --- raising
+the relative price of commodities produced on cleared tropical forest
+land --- while ensuring overall revenue neutrality for the exporting
+country.\\
+
+In summary, we believe that the rapid dispersal of clearing in
+tropical forests warrants a re- assessment of policies for reducing
+CO2 emissions from those areas. Two of the three traditional Coasian
+options are infeasible, because the international legal/regulatory
+regime will not supportthem. By default, protected-area programs and
+REDD+ policies have adopted Coasian option (3) – direct payments to
+polluters for reducing their pollution. However, as Coase and others
+have long noted, the transactions cost of option (3) escalates as the
+number of polluters increases.  To address this problem, we propose an
+additional Coasian option set (Coase+) that focuses on transactions
+via consumption rather than transactions via production. Coase+
+measures seem feasible for major tropical forest products, and they
+may well offer an attractive alternative to REDD+ in some cases.\\
+
 Conservation negotiations rely on a series of joint arrangements.
 Each arrangement takes a significant amount of time to specify.  Even
 if the number of relevant players in the negotiation rises linearly,
