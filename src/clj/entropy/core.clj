@@ -9,7 +9,7 @@
   "Map of S3 sources"
   {:static-src "s3n://pailbucket/all-static-seq/all"
    :prob-src   "s3n://formatemp/output/all-probs-merged"
-   :out-sink   "s3n://formatemp/dispersion/long-series"})
+   :out-sink   "s3n://forma-analysis/entropy/long-form"})
 
 (defn- clean-series
   "Accepts a source with the probability series for each pixel, as
