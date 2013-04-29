@@ -8,7 +8,8 @@
 (def path-map
   "Map of S3 sources"
   {:static-src "s3n://pailbucket/all-static-seq/all"
-   :prob-src   "s3n://pailbucket/all-prob-series"})
+   :prob-src   "s3n://formatemp/output/all-probs-merged"
+   :out-sink   "s3n://formatemp/dispersion/long-series"})
 
 (defn- clean-series
   "Accepts a source with the probability series for each pixel, as
@@ -18,6 +19,8 @@
   (<- [?mod-h ?mod-v ?sample ?line ?gadm ?clean-series]
       (prob-src ?s-res ?mod-h ?mod-v ?sample ?line ?prob-series)
       (static-src ?s-res ?mod-h ?mod-v ?sample ?line ?vcf ?gadm _ ?hansen _)
+      (first ?prob-series :> ?first-elem)
+      (symbol? ?first-elem :> false)
       (clean-probs ?prob-series -9999.0 :> ?clean-series)))
 
 (defmapcatop explode-timeseries
@@ -41,13 +44,11 @@
         (gadm->iso ?gadm :> ?iso)
         (c/sum ?val :> ?total-prob))))
 
-(defn reshape-series
+(defmain ReshapeSeries
   "Package the long-tap query, accepts a threshold (0-100) and a path
   on S3 to save the tab-delimited textfile"
-  [threshold out-path]
+  [& {:keys [threshold] :or {threshold 50}}]
   (let [static-src (hfs-seqfile (:static-src path-map))
         prob-src   (hfs-seqfile (:prob-src path-map))]
-    (?- (hfs-textline out-path :sinkmode :replace)
+    (?- (-> :out-sink path-map (hfs-textline :sinkmode :replace))
         (long-tap threshold prob-src static-src))))
-
-

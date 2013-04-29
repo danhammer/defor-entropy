@@ -25,23 +25,30 @@
 
 * Introduction
 
-Deforestation and forest degradation account for 12% of annual carbon
-emissions, as much as the global transporation sector.  An emissions
-source of this magnitude must be addressed in order to avert severe
-climate change.  International efforts to curb the rate of
-deforestation have thus far been a series of bilateral agreements,
-mostly centered around Brazil and Indonesia, the two largest
-contributors to global deforestation.  In 2007, the two countries
-accounted for approximately 40% of global deforestation. However, as
-international attention continues to focus on Brazil and Indonesia,
-forest clearing activity has become more disperesed, especially around
-the periphery of these regional hotspots.  In this paper, we report
-the broad geographic trends in deforestation, using an original data
-set on forest clearing activity from satellite imagery.  We highlight
-the increased dispersion of clearing activity and discuss the likely
-implications for global conservation efforts.
+Tropical deforestation and degradation account for roughly the same
+level of carbon emissions as the global transporation sector.  Any
+viable effort to mitigate climate change must address deforestation.
+International efforts to curb the rate of deforestation have thus far
+been composed of a series bilateral agreements, despite calls for a
+comprehensive mechanism to properly align global incentives.  The
+United Nations has proposed the Reducing Emissions from Deforestation
+and Degradation (REDD) mechanism to offset the incentives to convert
+forest to fiscally productive lands.  This grand Coasian bargain,
+however, has been frustrated by a series of factors, including high
+transaction costs, discord among member countries, and poorly defined
+property rights, among many others.  Many of these factors are
+functions of the complexity of the potential accords.  The devil, it
+seems, is in the details -- and the number of details rise
+exponentially with the number of contracting agents.  As with any
+network graph, the number of edges between nodes increases
+exponentially with the number of nodes.  Unfortunately, 
 
-- we care about admin units bc that's where negotiations and policies are crafted and enforced
+The lack
+of an interantional agreement can be attributed, in part, to a lack of
+consensus among member countries.  The
+
+- we care about admin units bc that's where negotiations and policies
+  are crafted and enforced
 - defor is clustered
 
 * Data
