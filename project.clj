@@ -24,7 +24,6 @@
                  [forma/jblas "1.2.1"]
                  [forma/forma "0.2.0-SNAPSHOT"]
                  [cascalog "1.10.1"]
-                 [cartodb-clj "1.5.2"]
                  [org.clojure/clojure-contrib "1.2.0"]
                  [cascalog-checkpoint "0.1.1"]
                  [backtype/dfs-datastores "1.1.3"]
