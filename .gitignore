@@ -14,3 +14,4 @@
 *.tex
 *.Rhistory
 *data/temp/*
+*data/raw/*

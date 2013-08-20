@@ -1,18 +1,14 @@
 #+TITLE: Coasian Motion: Deforestation and the Central Tendency to Disperse
 #+AUTHOR: Dan Hammer, Robin Kraft, David Wheeler
 #+OPTIONS:     toc:nil num:nil 
-#+LATEX_HEADER: \usepackage{mathrsfs}
-#+LATEX_HEADER: \usepackage{graphicx}
 #+LATEX_HEADER: \usepackage{comment}
 #+LATEX_HEADER: \usepackage{color}
 #+LATEX_HEADER: \usepackage{amstex}
-#+LATEX_HEADER: \usepackage{graphicx}
 #+LATEX_HEADER: \usepackage{booktabs}
 #+LATEX_HEADER: \usepackage{dcolumn}
 #+LATEX_HEADER: \usepackage{subfigure}
 #+LATEX_HEADER: \usepackage{caption} 
 #+LATEX_HEADER: \usepackage{subcaption}
-#+LATEX_HEADER: \usepackage{comment} 
 #+LATEX_HEADER: \usepackage[margin=1in]{geometry}
 #+LATEX: \setlength{\parindent}{0in}
 #+LATEX: \renewcommand{\X}{{\bf X}}
@@ -25,33 +21,119 @@
 
 * Introduction
 
-Tropical deforestation and degradation account for roughly the same
-level of carbon emissions as the global transporation sector.  Any
-viable effort to mitigate climate change must address deforestation.
-International efforts to curb the rate of deforestation have thus far
-been composed of a series bilateral agreements, despite calls for a
-comprehensive mechanism to properly align global incentives.  The
+Tropical deforestation may contribute over 15% of annual greenhouse
+gas emissions. Any viable effort to mitigate climate change will have
+to address deforestation.  International efforts to curb the rate of
+deforestation have thus far been composed of a series bilateral
+agreements, despite calls for a comprehensive, global mechanism.  The
 United Nations has proposed the Reducing Emissions from Deforestation
-and Degradation (REDD) mechanism to offset the incentives to convert
-forest to fiscally productive lands.  This grand Coasian bargain,
-however, has been frustrated by a series of factors, including high
+and Degradation (REDD) framework to directly address local incentives
+to convert forest to fiscally productive lands.  This grand Coasian
+bargain, however, has been frustrated by many factors, including high
 transaction costs, discord among member countries, and poorly defined
-property rights, among many others.  Many of these factors are
-functions of the complexity of the potential accords.  The devil, it
-seems, is in the details -- and the number of details rise
-exponentially with the number of contracting agents.  As with any
-network graph, the number of edges between nodes increases
-exponentially with the number of nodes.  Unfortunately, 
+property rights.  The number of frustrating factors is an increasing
+function of the number of relevant member countries.  The devil is in
+the details, and the amount of details rises exponentially with the
+number of contracting agents.  As with any network graph, the number
+of edges increases exponentially with the number of nodes.  The UN
+REDD framework is effectively an attempt to consolidate negotiations;
+but this effort has met limited success due in part to a constantly
+shifting natural and political landscape for forest conservation.\\
 
-The lack
-of an interantional agreement can be attributed, in part, to a lack of
-consensus among member countries.  The
+This paper demonstrates that the basis for a comprehensive agreement
+is becoming more complex.  Specifically, this paper utilizes satellite
+imagery to show that the dispersion of forest clearing across
+administrative units is increasing.  The number of countries with a
+substantial share of forest clearing activities is increasing,
+potentially forestalling a truly comprehensive conservation framework.  
 
-- we care about admin units bc that's where negotiations and policies
-  are crafted and enforced
-- defor is clustered
+* Forest clearing detection
 
-* Data
+The data on forest clearing activity is based on the classification of
+stacked images from the Moderate Resolution Image Spectroradiometer
+(MODIS) sensor.  Both time series and cross-sectional characteristics
+are extracted from the images, and then compared against historical
+(2000-2005) forest cover loss data (Hansen, 2008).  The classification
+rule is derived from the comparison, and then applied to recent
+imagery.  The final output is a probability of forest cover loss
+between January 1, 2000 and the acquisition date of the most recent
+MODIS image.  The resulting alerts are highly accurate when compared
+against other, production-level forest clearing alerts.  A notable
+result is that this relatively simple algorithm produces accurate
+alerts, especially in capturing the broad trends of forest clearing
+activity.\\
+
+The algorithm to collect forest clearing alerts consists of four
+principal stages:\\
+
+1. Time series characteristics from the derived Normalized Difference
+   Vegetation Index (NDVI) are extracted for each 500-meter pixel in
+   the humid tropics (MOD13A1).  These characteristics include
+   long-term trends and variation in the NDVI, along with short-term
+   break detection (citation needed).  The techniques are common in
+   time series econometrics, often in the context of financial
+   indices.  The established econometric techniques are repurposed to
+   account for natural cycles.
+
+2. Cross-sectional methods are employed on derived images to identify
+   clusters of the extracted time dependent characteristics.  This
+   includes, for example, the largest detected drop in the NDVI series
+   for a cluster of pixels.  The largest, neighborhood drop is
+   ascribed as a pixel-level characteristic, acting as a smoothing
+   operator across the image, much like a moving average over time.
+
+3. Pixel-level attributes from the time series and cross-sectional
+   analysis are compared against historical data on forest cover loss.
+   The precise method of comparison is a logistic, ridge classifier
+   (citation needed), implemented in parallel to accommodate very
+   large and distributed data sets.  A separate classification rule is
+   generated and applied for each ecoregion (citation needed)
+   independently.
+
+4. The classification rule is applied to the most recent MODIS imagery
+   for each ecoregion to produce a probability of forest cover loss.
+   The probability can be interpreted as a measure of \emph{strength
+   of signal} of clearing activity.  There is substantial noise via
+   measurement error or cloud cover, which may mask the spectral
+   signals associated with forest conversion.  The continuous index
+   rises as the signal of forest cover loss persists over time.  
+
+The precise algorithm, along with documentation and detailed analysis,
+is stored as an open source code repository, with a growing number of
+contributors.  The final output can be replicated from the raw
+imagery; every minor step, of which there are many, is open for public
+review.  The result is a highly accurate alerting system of forest
+cover loss in the humid tropics.  
+
+
+
+* 
+
+The probability $p_{it}$ indicates the likelihood of forest clearing
+activity within grid cell $i$ for the interval between December 2005
+and period $t$.  The probability measure is the output from a logistic
+classifier, where the features are extracted from layered satellite
+imagery and compared against the Hansen (2008) data set.  Additional
+description of the algorithm are presented in /Materials and Methods/.
+The spatial resolution for this study is 500-meters and the temporal
+frequency is 16-days.  There are 191? periods during the study
+interval between 2008 and April 2013.  
+
+The algorithm to identify forest clearing activity for each 500m grid
+cell in the humid tropical biome is described in the /Materials and
+Methods/ section.  Let $p_{it}$ indicate the probability of clearing
+activity for pixel $i$ and the time interval between December 2005 and
+period $t$.  The probability is the output from a logistic classifier,
+indicating the intensity of satellite signals that have historically
+been associated with deforestation.  The deforestation rate for
+administrative unit $j$ is the number of pixels that were tagged with
+deforestation for the first time in period $t$.
+
+The incremental deforestation rate $d_{jt}$ expresses the number of
+500m grid cells tagged with clearing activity in administrative unit
+$j$ during time interval $t$.  The algorithm to identify pixel-level
+clearing activity from satellite imagery is described in /Materials
+and Methods/.  The output from the algorithm is 
 
 The data used for this paper are the forest clearing alerts from
 Forest Monitoring for Action (FORMA), a pan-tropical forest monitoring
@@ -324,6 +406,7 @@ coefficient of friction is much greater than the dyanmic coefficient
 of friction; and this analogy applies to economic processes with
 increasing returns to scale.
 
-* Conclusion
+* Appendix: Materials and Methods
+
 
 
